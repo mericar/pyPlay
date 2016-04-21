@@ -1,7 +1,7 @@
 from socket import *
 
 host = ''
-port = 2001
+port = 50006
 
 sock = socket(AF_INET, SOCK_STREAM)
 sock.bind((host, port))
