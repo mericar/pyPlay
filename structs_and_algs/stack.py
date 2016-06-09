@@ -1,29 +1,29 @@
-class Element(object):
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+class Node(object):
+    def __init__(self, val):
+        self.val = val
+        self.next_node = None
         
 class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
         
-    def append(self, new_element):
+    def append(self, new_node):
         current = self.head
         if self.head:
-            while current.next:
-                current = current.next
-            current.next = new_element
+            while current.next_node:
+                current = current.next_node
+            current.next_node = new_node
         else:
-            self.head = new_element
+            self.head = new_node
 
-    def insert_first(self, new_element):
-        new_element.next = self.head
-        self.head = new_element
+    def insert_first(self, new_node):
+        new_node.next_node = self.head
+        self.head = new_node
         
     def delete_first(self):
         if self.head:
             deleted = self.head
-            temp = deleted.next
+            temp = deleted.next_node
             self.head = temp
             return deleted
         else:
