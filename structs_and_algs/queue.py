@@ -1,13 +1,13 @@
 class Queue:
-    def __init__(self, head=None):
-        self.storage = [head]
+    def __init__(self, front=None):
+        self.q = [front]
 
-    def enqueue(self, new_element):
-        self.storage.append(new_element)
+    def enqueue(self, new_entity):
+        self.q.append(new_entity)
 
     def first(self):
-        return self.storage[0] 
+        return self.q[0] 
 
     def dequeue(self):
-        return self.storage.pop(0)
+        return self.q.pop(0)
     
