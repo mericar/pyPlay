@@ -1,21 +1,21 @@
 
-class Element(object):
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+class Node(object):
+    def __init__(self, val):
+        self.val = val
+        self.next_node = None
         
 class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
         
-    def append(self, new_element):
+    def append(self, new_node):
         current = self.head
         if self.head:
-            while current.next:
-                current = current.next
-            current.next = new_element
+            while current.next_node:
+                current = current.next_node
+            current.next_node = new_node
         else:
-            self.head = new_element
+            self.head = new_node
             
     def get_position(self, position):
         curr = self.head
@@ -23,41 +23,41 @@ class LinkedList(object):
         if position == acc:
             return curr
         else:
-            while curr.next:
-                curr = curr.next
+            while curr.next_node:
+                curr = curr.next_node
                 acc += 1
                 if acc == position:
                     return curr
             return None
     
-    def insert(self, new_element, position):
+    def insert(self, new_node, pos):
         curr = self.head
         acc = 1
-        if position == acc:
-            new_element = self.head
-            curr = curr.next
+        if pos == acc:
+            new_node = self.head
+            curr = curr.next_node
         else:
-            while curr.next:
-                curr = curr.next
-                acc+=1
-                if (position-1) == acc:
+            while curr.next_node:
+                curr = curr.next_node
+                acc += 1
+                if (pos - 1) == acc:
                     temp = Element(0)
-                    temp = curr.next
-                    curr.next = new_element
-                    new_element.next = temp
+                    temp = curr.next_node
+                    curr.next_node = new_element
+                    new_node.next_node = temp
                     return
                     
-    def delete(self, value):
-        """Delete the first node with a given value."""
+    def delete(self, val):
+        """Deletes the first node with a given value."""
         curr = self.head
-        prev = Element(0)
-        if curr.value == value:
-            self.head = curr.next
-        while curr.next:
+        prev = Node(0)
+        if curr.val == val:
+            self.head = curr.next_node
+        while curr.next_node:
             prev = curr
-            curr = curr.next
-            if curr.value == value:
-                prev.next = curr
+            curr = curr.next_node
+            if curr.val == value:
+                prev.next_node = curr
         return
                 
                 
