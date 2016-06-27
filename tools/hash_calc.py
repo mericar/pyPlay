@@ -5,10 +5,10 @@ import hashlib
 import time
 
 #CONSTANTS
-ENTRY_WIDTH = 25
+ENTRY_WIDTH = 30
 
 root = Tk()
-root.resizable(width=TRUE, height=TRUE)
+root.resizable(width=FALSE, height=FALSE)
 root.title("HASH CALCULATOR: ULTRA EDITION")
 
 mainframe = ttk.Frame(root, padding="3 3 12 12")
@@ -24,10 +24,12 @@ x_amount = StringVar()
 x_currency = StringVar()
 x_fp_hash = StringVar()
 
+#set timestamp
 def calculate_timestamp(*args):
 	time_now = str(int(time.time()))
 	x_fp_timestamp.set(time_now)
 
+#calculates hash with hmac-md5 algorithm.
 def calculate_hash(*args):
 	try:
 		transaction_key_value = transaction_key.get().encode()
@@ -51,7 +53,7 @@ def calculate_hash(*args):
 	except ValueError:
 		pass
 
-
+#FIELD ENTRY AND TIMESTAMP/HASH VALUE OUTPUT ENTRIES
 transaction_key_entry = ttk.Entry(mainframe, width=ENTRY_WIDTH, textvariable=transaction_key)
 transaction_key_entry.grid(column=2, row=1, sticky=(W, E))
 
@@ -70,15 +72,17 @@ x_amount_entry.grid(column=2, row=5, sticky=(W, E))
 x_currency_entry = ttk.Entry(mainframe, width=ENTRY_WIDTH, textvariable=x_currency)
 x_currency_entry.grid(column=2, row=6, sticky=(W, E))
 
-ttk.Label(mainframe, textvariable=x_fp_hash).grid(column=2, row=7, sticky=(W, E))
-ttk.Button(mainframe, text="Calculate Hash Value", command=calculate_hash).grid(column=1, row=7, sticky=W)
+x_fp_hash_entry = ttk.Entry(mainframe, width=ENTRY_WIDTH, textvariable=x_fp_hash)
+x_fp_hash_entry.grid(column=2, row=7, sticky=(W, E))
 
+#LABELS
 ttk.Label(mainframe, text="transaction key").grid(column=1, row=1, sticky=W)
 ttk.Label(mainframe, text="x_login").grid(column=1, row=2, sticky=W)
 ttk.Button(mainframe, text="Calculate Timestamp", command=calculate_timestamp).grid(column=1, row=3, sticky=W)
 ttk.Label(mainframe, text="x_fp_sequence").grid(column=1, row=4, sticky=W)
 ttk.Label(mainframe, text="x_amount").grid(column=1, row=5, sticky=W)
 ttk.Label(mainframe, text="x_currency").grid(column=1, row=6, sticky=W)
+ttk.Button(mainframe, text="Calculate Hash Value", command=calculate_hash).grid(column=1, row=7, sticky=W)
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 
@@ -86,9 +90,3 @@ x_login_entry.focus()
 root.bind('<Return>', calculate_hash)
 
 root.mainloop()
-
-
-
-
-
-
